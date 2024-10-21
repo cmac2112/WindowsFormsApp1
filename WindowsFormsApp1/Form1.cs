@@ -19,7 +19,8 @@ namespace WindowsFormsApp1
         public Form1()
         {
             InitializeComponent();
-            Folder folderInstance = new Folder("Root");
+            List<Folder> folderInstance = CreateAlphabetFolders();
+            
             //attach event handler
             folderTreeView.MouseUp += new MouseEventHandler(folderTreeView_MouseUp);
             folderTreeView.NodeMouseDoubleClick += new TreeNodeMouseClickEventHandler(folderTreeView_NodeMouseDoubleClick);
@@ -39,11 +40,23 @@ namespace WindowsFormsApp1
             PopulateTreeView(folderInstance);
             
         }
-        private void PopulateTreeView(Folder rootFolder)
+        private List<Folder> CreateAlphabetFolders()
+        { //create list of folders A-Z
+            List<Folder> folders = new List<Folder>();
+            for(char c ='A'; c <= 'Z'; c++)
+            {
+                folders.Add(new Folder(c.ToString()));
+            }
+            return folders;
+        }
+        private void PopulateTreeView(List<Folder> rootFolders)
         {
-            TreeNode rootNode = new TreeNode(rootFolder.Name);
-            folderTreeView.Nodes.Add(rootNode);
-            AddSubFolders(rootNode, rootFolder.SubFolder);
+            foreach (var rootFolder in rootFolders)
+            {
+                TreeNode rootNode = new TreeNode(rootFolder.Name);
+                folderTreeView.Nodes.Add(rootNode);
+                AddSubFolders(rootNode, rootFolder.SubFolder);
+            }
         }
         private void AddSubFolders(TreeNode parentNode, List<Folder> subFolders)
         {
