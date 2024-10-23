@@ -11,6 +11,7 @@ using static WindowsFormsApp1.Folder;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 using System.Diagnostics;
+using System.Drawing.Text;
 
 namespace WindowsFormsApp1
 {
@@ -112,12 +113,12 @@ namespace WindowsFormsApp1
                     string dateOfBirth = addDocumentForm.DateOfBirth;
                     string address = addDocumentForm.Address;
                     string phone = addDocumentForm.Phone;
-                    Console.WriteLine("Document name: " + documentName);
+                    /*Console.WriteLine("Document name: " + documentName);
                     Console.WriteLine("marital status:" + maritalStatus);
                     Console.WriteLine("date of birth:" + dateOfBirth);
                     Console.WriteLine("address:" + address);
                     Console.WriteLine("phone:" + phone);
-
+                    */
                     string filePath = $"{documentName}.docx";
                     using(WordprocessingDocument wordDocument = WordprocessingDocument.Create(filePath, DocumentFormat.OpenXml.WordprocessingDocumentType.Document))
                     {
@@ -153,8 +154,10 @@ namespace WindowsFormsApp1
                     }
                     Process.Start(filePath);
                 }
+                
             }
         }
+
         private void RetrieveChildMenuItem_Click(object sender, EventArgs e)
         {
             Console.WriteLine("retrieve child");

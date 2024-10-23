@@ -74,7 +74,7 @@
             // 
             this.folderTreeView.Location = new System.Drawing.Point(13, 32);
             this.folderTreeView.Name = "folderTreeView";
-            this.folderTreeView.Size = new System.Drawing.Size(121, 261);
+            this.folderTreeView.Size = new System.Drawing.Size(362, 261);
             this.folderTreeView.TabIndex = 1;
             this.folderTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.folderTreeView_AfterSelect);
             // 
@@ -82,7 +82,7 @@
             // 
             this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 32);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
             this.contextMenuStrip1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.folderTreeView_MouseUp);
             // 

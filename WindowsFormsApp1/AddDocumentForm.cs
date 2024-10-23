@@ -73,7 +73,37 @@ namespace WindowsFormsApp1
             this.buttonCancel.Text = "Cancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
-            
+
+            Label labelDocumentName = new Label
+            {
+                Text = "Document Name",
+                Location = new System.Drawing.Point(300, 15),
+                AutoSize = true,
+            };
+            Label labelMaritalStatus = new Label
+            {
+                Text = "Marital Status:",
+                Location = new System.Drawing.Point(300, 41),
+                AutoSize = true
+            };
+            Label labelDateOfBirth = new Label
+            {
+                Text = "Date of Birth:",
+                Location = new System.Drawing.Point(300, 67),
+                AutoSize = true
+            };
+            Label labelAddress = new Label
+            {
+                Text = "Address:",
+                Location = new System.Drawing.Point(300, 93),
+                AutoSize = true
+            };
+            Label labelPhone = new Label
+            {
+                Text = "Phone:",
+                Location = new System.Drawing.Point(300, 119),
+                AutoSize = true
+            };
 
             this.ClientSize = new System.Drawing.Size(600, 300);
             this.Controls.Add(this.buttonCancel);
@@ -84,6 +114,11 @@ namespace WindowsFormsApp1
             this.Controls.Add(this.textBoxDateOfBirth);
             this.Controls.Add(this.textBoxMaritalStatus);
             this.Controls.Add(this.textBoxDocumentName);
+            this.Controls.Add(labelDocumentName);
+            this.Controls.Add(labelMaritalStatus);
+            this.Controls.Add(labelDateOfBirth);
+            this.Controls.Add(labelAddress);
+            this.Controls.Add(labelPhone);
             this.Name = "AddDocumentForm";
             this.Text = "Add Document";
             this.ResumeLayout(false);
