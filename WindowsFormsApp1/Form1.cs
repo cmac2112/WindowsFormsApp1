@@ -52,12 +52,29 @@ namespace WindowsFormsApp1
         }
         private void PopulateTreeView(List<Folder> rootFolders)
         {
+            /*
+            List<Folder> testFiles = new List<Folder>();
+            
+            for(int i = 0; i < 200; i++)
+            {
+                testFiles.Add(new Folder(i.ToString()));
+            }
+            */
             foreach (var rootFolder in rootFolders)
             {
                 TreeNode rootNode = new TreeNode(rootFolder.Name);
                 folderTreeView.Nodes.Add(rootNode);
                 AddSubFolders(rootNode, rootFolder.SubFolder);
             }
+            /*
+            foreach(var file in testFiles)
+            {
+                TreeNode testNode = new TreeNode(file.Name);
+                folderTreeView.Nodes.Add(testNode);
+                AddSubFolders(testNode, file.SubFolder);
+
+            }
+            */
         }
         private void AddSubFolders(TreeNode parentNode, List<Folder> subFolders)
         {
@@ -138,9 +155,58 @@ namespace WindowsFormsApp1
 
                     Console.WriteLine($"Document '{filePath}' created");
 
+                    //logic to store items alphabetically
+
+                    char firstLetter = documentName.ToUpper()[0]; //store the first letter of the document name 
+                    Console.WriteLine("first Letter");
+                    Console.WriteLine(firstLetter);
+
+                    TreeNode parentNode = null; //initialize parent node variable
+
+                    foreach(TreeNode node in folderTreeView.Nodes) //attempt to find the parent node with the same letter
+                    {
+                        if (node.Text == firstLetter.ToString())
+                        {
+                            parentNode = node; //found
+                            Console.WriteLine("parent node found");
+                            Console.WriteLine(parentNode);
+                            break;
+                        }
+                    }
+
+                    if(parentNode != null)
+                    {
+                        TreeNode newNode = new TreeNode(documentName);
+                        newNode.Tag = filePath;
+
+                        bool inserted = false;
+
+                        for(int i = 0; i < parentNode.Nodes.Count; i++)
+                        {
+                            if (string.Compare(parentNode.Nodes[i].Text, documentName, StringComparison.OrdinalIgnoreCase) > 0)
+                            {
+                                parentNode.Nodes.Insert(i, newNode);
+                                inserted = true;
+                                break;
+                            }
+                        }
+                        if (!inserted)
+                        {
+                            parentNode.Nodes.Add(newNode);
+                        }
+                        parentNode.Expand();
+                    }
+                    else
+                    {
+                        TreeNode newNode = new TreeNode(documentName);
+                        newNode.Tag = filePath;
+                        folderTreeView.Nodes.Add(newNode);
+                    }
+                    /*
                         if (folderTreeView.SelectedNode != null)
                     {
                         TreeNode selectedNode = folderTreeView.SelectedNode;
+                        //logic where the file is placed, automatically place it here based on alphebetical order
                         TreeNode newNode = new TreeNode(documentName);
                         newNode.Tag = filePath;
                         selectedNode.Nodes.Add(newNode);
@@ -152,6 +218,7 @@ namespace WindowsFormsApp1
                         newNode.Tag = filePath; //store the filepath as a tag so the event handler can process it
                         folderTreeView.Nodes.Add(newNode);
                     }
+                    */
                     Process.Start(filePath);
                 }
                 
